@@ -9,9 +9,19 @@ import 'package:nozaapp/model/chatbot_model.dart';
 
 class ChatbotProvider extends ChangeNotifier{
   ChatbotModel? chatresponse;
+  List allmessages=[];
+ bool isloading=false;
+
+ isShowloading(bool value){
+  isloading=value;
+  notifyListeners();
+ }
 
   TextEditingController controller=TextEditingController();
  sendmessage()async{
+  // controller.clear();
+  allmessages.add(controller.text);
+  isShowloading(true);
   final headers = {
   'Content-Type': 'application/json',
   'X-goog-api-key': 'AIzaSyDySX3Vpk89y8SfROQGSAqqd07gv5Y14ZA'
@@ -32,6 +42,9 @@ final body=json.encode({
   if (data.statusCode==200) {
     var response=jsonDecode(data.body);
   chatresponse= ChatbotModel.fromJson(response);
+  allmessages.add(chatresponse!.candidates[0].content.parts[0].text);
+  controller.clear();
+  isShowloading(false);
   notifyListeners();
   }
   

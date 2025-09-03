@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nozaapp/controller/provider/chatbot_provider.dart';
 import 'package:nozaapp/view/chatbot_screen.dart';
+import 'package:nozaapp/view/splashscreen.dart';
 // import 'package:nozaapp/view/practice.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context)=>ChatbotProvider())
       ],
       child: MaterialApp(
-        home:ChatbotScreen() ,
+        home:Splashscreen() ,
         // home:MyPage() ,
 
         debugShowCheckedModeBanner: false,
